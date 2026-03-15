@@ -17,6 +17,10 @@ class Settings(BaseSettings):
     environment: str = Field(default="development")
     debug: bool = Field(default=True)
     api_v1_prefix: str = "/api/v1"
+    cors_allowed_origins: list[str] = Field(default=["http://localhost:5173"])
+    database_url: str = Field(
+        default="postgresql+psycopg://postgres:postgres@db:5432/smai_backend"
+    )
 
 
 @lru_cache(maxsize=1)

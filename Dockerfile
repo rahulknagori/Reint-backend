@@ -10,6 +10,8 @@ RUN adduser --disabled-password --gecos "" appuser
 
 COPY pyproject.toml README.md ./
 COPY app ./app
+COPY alembic.ini ./alembic.ini
+COPY alembic ./alembic
 
 RUN pip install --upgrade pip && pip install .
 

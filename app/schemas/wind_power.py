@@ -18,17 +18,16 @@ class ActualGenerationPoint(BaseModel):
 
 
 class ForecastGenerationPoint(BaseModel):
-    target_time: datetime
-    created_at: datetime
-    generation_mw: float = Field(ge=0)
-
-
-class UpsertActualsRequest(BaseModel):
-    points: list[ActualGenerationPoint]
-
-
-class UpsertForecastsRequest(BaseModel):
-    points: list[ForecastGenerationPoint]
+    target_time: datetime = Field(
+        validation_alias=AliasChoices("target_time", "startTime"),
+    )
+    created_at: datetime = Field(
+        validation_alias=AliasChoices("created_at", "publishTime"),
+    )
+    generation_mw: float = Field(
+        ge=0,
+        validation_alias=AliasChoices("generation_mw", "generation"),
+    )
 
 
 class UpsertResponse(BaseModel):
